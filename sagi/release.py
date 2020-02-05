@@ -77,9 +77,5 @@ class Release:
         return (int(major) * 1000000) + (int(minor) * 1000) + int(patch)
 
     @classmethod
-    def get_auto(cls):
-        return tk.IntVar(value=config.getint("disable_auto_update")).get()
-
-    @classmethod
     def plugin_start(cls, plugin_dir):
         cls.plugin_dir = plugin_dir
