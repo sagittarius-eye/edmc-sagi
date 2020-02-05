@@ -59,21 +59,14 @@ class Release:
                 self.__plugin_prefs_text = "Plugin update failed, please do it manually"
 
             try:
-                os.rename(Release.plugin_dir, "{}.disabled".format(Release.plugin_dir))
+                shutil.rmtree(Release.plugin_dir)
             except:
-                self.__plugin_prefs_text = "Plugin update failed, please do it manually"
+                self.__plugin_prefs_text = "Could not delete the old version, deleting the new one"
                 shutil.rmtree(new_plugin_dir)
-
-            try:
-                shutil.rmtree("{}.disabled".format(Release.plugin_dir))
-            except:
-                pass
 
             Release.plugin_dir = new_plugin_dir
         else:
             self.__plugin_prefs_text = "Plugin update failed, please do it manually"
-
-
 
     @staticmethod
     def version2number(version):
