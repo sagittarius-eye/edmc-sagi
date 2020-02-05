@@ -2,7 +2,7 @@
 The Sagittarius Eye EDMC plugin
 :author: CMDR 147loch
 :date: 05.02.2020
-:version: 1.0.0
+:version: 1.0.1
 """
 
 import sys
@@ -18,7 +18,7 @@ from config import config
 this = sys.modules[__name__]
 
 this.plugin = "edmc-sagi"
-this.version = "1.0.0"
+this.version = "1.0.1"
 this.client_version = "{}.{}".format(this.plugin, this.version)
 
 

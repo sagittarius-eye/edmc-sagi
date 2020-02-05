@@ -34,7 +34,7 @@ class Release:
             release = Release.version2number(self.__latest.get('tag_name'))
 
             if current < release:
-                if self.__disable_auto_updates.get() == 1:
+                if self.__disable_auto_updates.get() == 0:
                     self.installer()
                 else:
                     self.__plugin_prefs_text = "New version available: {}. Please update now.".format(
@@ -65,7 +65,7 @@ class Release:
                 shutil.rmtree(new_plugin_dir)
 
             try:
-                shutil.rmtree(Release.plugin_dir)
+                shutil.rmtree("{}.disabled".format(Release.plugin_dir))
             except:
                 pass
 
