@@ -8,7 +8,7 @@
   <img src="https://i.imgur.com/r2gTFA2.png" alt="EDMC-sagi">
 </p>
 
-#### Sagittarius Eye News Feed
+### Sagittarius Eye News Feed
 
 The latest from *Sagittarius Eye* is shown in the corresponding application tab.
 Simply click on any of the links to open a new tab showing the content.
