@@ -15,13 +15,10 @@ class Release:
     def __init__(self, version):
         self.__version = version
         self.__disable_auto_updates = tk.IntVar(value=config.getint("disable_auto_update"))
-
         self.__plugin_prefs_text = None
-
         self.__latest = None
-
+        self.release_pull()
         self.release_update()
-
         pass
 
     def release_pull(self):
