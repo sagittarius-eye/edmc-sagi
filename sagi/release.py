@@ -18,15 +18,16 @@ class Release:
 
         self.__plugin_prefs_text = None
 
-        r = requests.get("https://api.github.com/repos/sagittarius-eye/edmc-sagi/releases/latest")
-        if r.status_code == requests.codes.ok:
-            self.__latest = r.json()
-        else:
-            self.__latest = None
+        self.__latest = None
 
         self.release_update()
 
         pass
+
+    def release_pull(self):
+        r = requests.get("https://api.github.com/repos/sagittarius-eye/edmc-sagi/releases/latest")
+        if r.status_code == requests.codes.ok:
+            self.__latest = r.json()
 
     def release_update(self):
         if self.__latest is not None:
@@ -44,6 +45,10 @@ class Release:
     def plugin_prefs(self, frame):
         if self.__plugin_prefs_text is not None:
             nb.Label(frame, text=self.__plugin_prefs_text).grid(padx=10, pady=10, sticky=tk.W)
+
+    def prefs_changed(self):
+        self.release_pull()
+        self.release_update()
 
     def installer(self):
         tag_name = self.__latest.get('tag_name')
@@ -64,6 +69,7 @@ class Release:
                 self.__plugin_prefs_text = "Could not delete the old version, deleting the new one"
                 shutil.rmtree(new_plugin_dir)
 
+            self.__plugin_prefs_text = "Update installed, please restart the app now."
             Release.plugin_dir = new_plugin_dir
         else:
             self.__plugin_prefs_text = "Plugin update failed, please do it manually"
