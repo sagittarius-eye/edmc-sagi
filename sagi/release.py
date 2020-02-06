@@ -1,10 +1,16 @@
-import Tkinter as tk
+import sys
+if sys.version_info[0] == 3:
+    import tkinter as tk
+    from io import StringIO
+else:
+    import Tkinter as tk
+    import StringIO
+
 import myNotebook as nb
 from config import config
 import requests
 import os
 import zipfile
-import StringIO
 import shutil
 
 
@@ -66,7 +72,8 @@ class Release:
                 self.__plugin_prefs_text = "Could not delete the old version, deleting the new one"
                 shutil.rmtree(new_plugin_dir)
 
-            self.__plugin_prefs_text = "Update installed, please restart the app now."
+            if self.__plugin_prefs_text is None:
+                self.__plugin_prefs_text = "Update installed, please restart the app now."
             Release.plugin_dir = new_plugin_dir
         else:
             self.__plugin_prefs_text = "Plugin update failed, please do it manually"

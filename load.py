@@ -2,7 +2,7 @@
 The Sagittarius Eye EDMC plugin
 :author: CMDR 147loch
 :date: 05.02.2020
-:version: 1.0.6
+:version: 1.1.7
 """
 
 import sys
@@ -18,11 +18,23 @@ from config import config
 this = sys.modules[__name__]
 
 this.plugin = "edmc-sagi"
-this.version = "1.0.6"
+this.version = "1.1.7"
 this.client_version = "{}-{}".format(this.plugin, this.version)
 
 
 def plugin_start(plugin_directory):
+    """
+    Plugin start hook
+    :param plugin_directory: The directory (used by automated updates)
+    :return: Plugin name
+    """
+    this.plugin_dir = plugin_directory
+    links.RecentLinks.plugin_start(plugin_directory)
+    release.Release.plugin_start(plugin_directory)
+    return 'SAGi'
+
+
+def plugin_start3(plugin_directory):
     """
     Plugin start hook
     :param plugin_directory: The directory (used by automated updates)
@@ -45,7 +57,7 @@ def plugin_prefs(parent, cmdr, is_beta):
     """
     this.disable_auto_update = tk.IntVar(value=config.getint("disable_auto_update"))
     frame = nb.Frame(parent)
-    nb.Checkbutton(frame, text="Disable Auto Updates", variable=this.disable_auto_update).grid(padx=10, pady=10)
+    nb.Checkbutton(frame, text="Disable Auto Updates", variable=this.disable_auto_update).grid(padx=10, pady=10, sticky=tk.W)
     nb.Label(frame, text='Loaded Version: %s' % this.version).grid(padx=10, pady=10, sticky=tk.W)
 
     this.Release.plugin_prefs(frame)
