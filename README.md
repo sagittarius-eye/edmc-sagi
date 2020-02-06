@@ -23,7 +23,7 @@ Open the application and go to the plugins tab of the settings screen.
 
 Click on `Open`. This will open the directory where you need to install the plugin.
 
-Now, download the [latest release of the plugin](https://github.com/sagittarius-eye/edmc-sagi/releases/latest) and extract the folder into the directory you opened in the previous step.
+Now, download the [latest release of the plugin](https://github.com/sagittarius-eye/edmc-sagi/releases/latest) and extract the folder **within the archive** into the directory you opened in the previous step.
 
 **Restart EDMC** and the plugin will be properly loaded and you should be able to see the new labels on the main screen.
 
