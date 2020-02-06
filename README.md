@@ -1,4 +1,4 @@
-# edmc-sagi
+# edmc-sagi [![Github All Releases](https://img.shields.io/github/downloads/sagittarius-eye/edmc-sagi/total?style=for-the-badge)](sagittarius-eye/edmc-sagi)
 
 > A plugin to access the latest from *Sagittarius Eye* at any time.
 
