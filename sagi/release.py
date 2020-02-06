@@ -1,7 +1,7 @@
 import sys
 if sys.version_info[0] == 3:
     import tkinter as tk
-    from io import StringIO
+    from io import BytesIO
 else:
     import Tkinter as tk
     import StringIO
@@ -61,10 +61,14 @@ class Release:
             try:
                 download = requests.get("https://github.com/sagittarius-eye/edmc-sagi/archive/{}.zip".format(tag_name),
                                         stream=True)
-                z = zipfile.ZipFile(StringIO.StringIO(download.content))
+                if sys.version_info[0] == 3:
+                    z = zipfile.ZipFile(BytesIO(download.content))
+                else:
+                    z = zipfile.ZipFile(StringIO.StringIO(download.content))
                 z.extractall(os.path.dirname(Release.plugin_dir))
             except:
                 self.__plugin_prefs_text = "Plugin update failed, please do it manually"
+                raise
 
             try:
                 shutil.rmtree(Release.plugin_dir)
